@@ -1,4 +1,5 @@
 // backend/server.js
+const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
@@ -6,8 +7,7 @@ const fs = require("fs");
 const app = express();
 app.use(bodyParser.json());
 
-let urls = JSON.parse(fs.readFileSync("urls.json"));
-
+let urls = JSON.parse(fs.readFileSync(path.join(__dirname, "urls.json")));
 // Route for shortening URLs
 app.post("/shorten", (req, res) => {
     const originalUrl = req.body.originalUrl;
